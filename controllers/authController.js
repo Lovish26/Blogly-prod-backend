@@ -29,7 +29,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   ),
   httpOnly: true,
   secure: req.secure || req.headers["x-forwarded-proto"] === "https",
-  sameSite: false,
+  sameSite: "none",
 });
   res.cookie("userId", newUser._id.toString(), {
   expires: new Date(
@@ -37,7 +37,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   ),
   httpOnly: true,
   secure: req.secure || req.headers["x-forwarded-proto"] === "https",
-  sameSite: false,
+  sameSite: "none",
 });
 
   res.status(201).json({
@@ -73,7 +73,7 @@ exports.login = catchAsync(async (req, res, next) => {
   ),
   httpOnly: true,
   secure: req.secure || req.headers["x-forwarded-proto"] === "https",
-  sameSite: false,
+  sameSite: "none",
 });
   res.cookie("userId", user._id.toString(), {
   expires: new Date(
@@ -81,7 +81,7 @@ exports.login = catchAsync(async (req, res, next) => {
   ),
   httpOnly: true,
   secure: req.secure || req.headers["x-forwarded-proto"] === "https",
-  sameSite: false,
+  sameSite: "none",
 });
 
   res.status(200).json({
