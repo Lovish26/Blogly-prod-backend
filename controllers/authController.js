@@ -4,13 +4,13 @@ const catchAsync = require("../utils/catchAsync");
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 
-const cookieOptions = {
-  expires: new Date(
-    Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-  ),
-  httpOnly: true,
-  secure: req.secure || req.headers["x-forwarded-proto"] === "https",
-};
+// const cookieOptions = {
+//   expires: new Date(
+//     Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+//   ),
+//   httpOnly: true,
+//   secure: req.secure || req.headers["x-forwarded-proto"] === "https",
+// };
 
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
@@ -23,8 +23,20 @@ exports.signup = catchAsync(async (req, res, next) => {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
-  res.cookie("jwt", token, cookieOptions);
-  res.cookie("userId", newUser._id.toString(), cookieOptions);
+  res.cookie("jwt", token, {
+  expires: new Date(
+    Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+  ),
+  httpOnly: true,
+  secure: req.secure || req.headers["x-forwarded-proto"] === "https",
+});
+  res.cookie("userId", newUser._id.toString(), {
+  expires: new Date(
+    Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+  ),
+  httpOnly: true,
+  secure: req.secure || req.headers["x-forwarded-proto"] === "https",
+});
 
   res.status(201).json({
     status: "success",
@@ -53,8 +65,20 @@ exports.login = catchAsync(async (req, res, next) => {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
-  res.cookie("jwt", token, cookieOptions);
-  res.cookie("userId", user._id.toString(), cookieOptions);
+  res.cookie("jwt", token, {
+  expires: new Date(
+    Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+  ),
+  httpOnly: true,
+  secure: req.secure || req.headers["x-forwarded-proto"] === "https",
+});
+  res.cookie("userId", user._id.toString(), {
+  expires: new Date(
+    Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+  ),
+  httpOnly: true,
+  secure: req.secure || req.headers["x-forwarded-proto"] === "https",
+});
 
   res.status(200).json({
     status: "success",
