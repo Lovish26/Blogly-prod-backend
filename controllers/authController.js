@@ -72,6 +72,7 @@ exports.login = catchAsync(async (req, res, next) => {
   secure: true,
   httpOnly:true,
   sameSite: "None",
+  domain: 'blogly.netlify.app'
 });
   res.cookie("userId", user._id.toString(), {
   expires: new Date(
@@ -80,6 +81,7 @@ exports.login = catchAsync(async (req, res, next) => {
   secure: true,
   httpOnly:true,
   sameSite: "None",
+  domain: 'blogly.netlify.app'
 });
 
   res.status(200).json({
