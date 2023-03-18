@@ -72,7 +72,8 @@ exports.login = catchAsync(async (req, res, next) => {
   secure: true,
   httpOnly: false,
   sameSite: "None",
-  domain: 'blogly.onrender.com'
+  domain: 'blogly.onrender.com',
+  path: '/'
 });
   res.cookie("userId", user._id.toString(), {
   expires: new Date(
@@ -81,7 +82,8 @@ exports.login = catchAsync(async (req, res, next) => {
   secure: true,
   httpOnly: false,
   sameSite: "None",
-  domain: 'blogly.onrender.com'
+  domain: 'blogly.onrender.com',
+  path: '/'
 });
 
   res.status(200).json({
