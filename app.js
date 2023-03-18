@@ -21,7 +21,7 @@ app.enable("trust proxy", 1);
 // 1) GLOBAL MIDDLEWARES
 // Implement cors
 
-app.use(cors({ credentials: true , origin: process.env.BASE_URL }));
+app.use(cors({ credentials: true , origin: "https://blogly.netlify.app" }));
 app.options("*", cors());
 
 // Serving static files
