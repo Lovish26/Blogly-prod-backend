@@ -16,7 +16,7 @@ const globalErrorHandler = require("./controllers/errorController");
 // Starts express app
 const app = express();
 
-app.enable("trust proxy");
+app.enable("trust proxy", 1);
 
 // 1) GLOBAL MIDDLEWARES
 // Implement cors
