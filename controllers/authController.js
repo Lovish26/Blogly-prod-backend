@@ -71,7 +71,7 @@ exports.login = catchAsync(async (req, res, next) => {
   ),
   secure: req.secure || req.headers["x-forwarded-proto"] === "https",
   sameSite: "none",
-  domain: "https://blogly.netlify.app/",
+  domain: "https://blogly.netlify.app",
 });
   res.cookie("userId", user._id.toString(), {
   expires: new Date(
@@ -79,7 +79,7 @@ exports.login = catchAsync(async (req, res, next) => {
   ),
   secure: req.secure || req.headers["x-forwarded-proto"] === "https",
   sameSite: "none",
-  domain: "https://blogly.netlify.app/",
+  domain: "https://blogly.netlify.app",
 });
 
   res.status(200).json({
