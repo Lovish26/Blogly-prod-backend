@@ -69,17 +69,17 @@ exports.login = catchAsync(async (req, res, next) => {
   expires: new Date(
     Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
   ),
-  secure: req.secure || req.headers["x-forwarded-proto"] === "https",
-  sameSite: "none",
-  domain: "https://blogly.netlify.app",
+  secure: true,
+  httpOnly:true,
+  sameSite: "None",
 });
   res.cookie("userId", user._id.toString(), {
   expires: new Date(
     Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
   ),
-  secure: req.secure || req.headers["x-forwarded-proto"] === "https",
-  sameSite: "none",
-  domain: "https://blogly.netlify.app",
+  secure: true,
+  httpOnly:true,
+  sameSite: "None",
 });
 
   res.status(200).json({
