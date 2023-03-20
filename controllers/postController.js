@@ -80,7 +80,20 @@ exports.editPost = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllPosts = catchAsync(async (req, res) => {
-  const posts = await Post.find();
+  const queryObj = { ...req.query };
+  const excludedFields = ["page", "limit"];
+  excludedFields.forEach((el) => delete queryObj[el]);
+
+  let query = Post.find(queryObj);
+
+  // Pagination
+  const page = req.query.page * 1 || 1;
+  const limit = req.query.limit * 1 || 20;
+  const skip = (page - 1) * limit;
+
+  query = query.skip(skip).limit(limit);
+
+  const posts = await query;
 
   res.status(200).json({
     status: "success",
