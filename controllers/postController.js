@@ -94,10 +94,13 @@ exports.getAllPosts = catchAsync(async (req, res) => {
   query = query.skip(skip).limit(limit);
 
   const posts = await query;
+  
+  let results = await Post.find();
+  results = results.length;
 
   res.status(200).json({
     status: "success",
-    results: posts.length,
+    results,
     posts,
   });
 });
