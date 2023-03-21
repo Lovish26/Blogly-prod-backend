@@ -21,11 +21,8 @@ app.enable("trust proxy", 1);
 // 1) GLOBAL MIDDLEWARES
 // Implement cors
 
-app.use(cors({ credentials: true , origin: "https://blogly.netlify.app" }));
+app.use(cors({ credentials: true, origin: "https://blogly.netlify.app" }));
 app.options("*", cors());
-
-// Serving static files
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 //  Set Security HTTP headers
 app.use(
